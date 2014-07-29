@@ -9,7 +9,11 @@ module.exports = {
     	},
     	createdAt: DataTypes.DATE,
     	updatedAt: DataTypes.DATE,
-    	content: DataTypes.STRING
+    	content: DataTypes.STRING,
+      authorId: {
+        type: DataTypes.INTEGER,
+        foriegnKey: true
+      }
     })
     .complete(done)
   },

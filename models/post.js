@@ -2,7 +2,7 @@
 
 function Post(sequelize, DataTypes){
   return sequelize.define('post', {
-    name: DataTypes.STRING
+    content: DataTypes.STRING
   });
 };
 

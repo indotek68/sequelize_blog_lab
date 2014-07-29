@@ -25,18 +25,24 @@ Object.keys(db).forEach(function(modelName) {
 
 // Associations
 
-db.author.hasMany(db.post);
+db.author.hasMany(db.post, {foreignKey: 'authorId'});
 db.post.belongsTo(db.author);
 
-db.post.create({content: "John Doe"})
+console.log(db.post)
+
+db.post.create({content: "We Jammin 4"})
   .success(function(post){
+    // console.log("Post!!!! WHEN WE START: ")
+    //   console.log(post)
     db.author.find(1).success(function(author){
-      author.setPosts([post])
-        .success(function(author){
-         console.log("Author: " + author + "Posts: " + post)
+      
+      author.setPosts([post]).success(function(){
+          // console.log("SAVED")  
+          // console.log(post)
       })
     });
 });
+
 
 // db.post.create({content: "Hello Worlds"})
 //   .success(function(postObj){

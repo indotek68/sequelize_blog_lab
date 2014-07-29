@@ -1,1 +1,18 @@
 <!-- index.ejs -->
+
+<!DOCTYPE>
+<html>
+  <head>
+
+  </head>
+  <body>
+  	<ul>
+  		<% posts.forEach(function(post) {%>
+      <li>
+      	<%= post.dataValues.content %> <%= post.dataValues.createdAt %>
+      </li>
+    <% }) %>
+
+  	</ul>
+  </body>
+</html>

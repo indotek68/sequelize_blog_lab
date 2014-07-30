@@ -25,23 +25,17 @@ Object.keys(db).forEach(function(modelName) {
 
 // Associations
 
-db.author.hasMany(db.post, {foreignKey: 'authorId'});
-db.post.belongsTo(db.author);
+// db.author.hasMany(db.post);
+// db.post.belongsTo(db.author);
 
-console.log(db.post)
+// console.log(db.post)
 
-db.post.create({content: "We Jammin 4"})
-  .success(function(post){
-    // console.log("Post!!!! WHEN WE START: ")
-    //   console.log(post)
-    db.author.find(1).success(function(author){
-      
-      author.setPosts([post]).success(function(){
-          // console.log("SAVED")  
-          // console.log(post)
-      })
-    });
-});
+// db.author.find(1).success(function(foundAuthor){
+//   var newPost = db.post.build({title: "hello worlds again!", content: "Jammin", authorId: foundAuthor.id});
+//   foundAuthor.addPost(newPost).success(function(){
+//     newPost.save()
+//   })
+// });
 
 
 // db.post.create({content: "Hello Worlds"})
@@ -49,7 +43,7 @@ db.post.create({content: "We Jammin 4"})
 //     console.log("postObj", postObj)
 // });
 
-// db.author.create({name: "Sam Smith"})
+// db.author.create({name: "Bob Marley"})
 //   .success(function(authorObj){
 //     console.log("authorObj", authorObj)
 // });

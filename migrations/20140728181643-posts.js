@@ -9,7 +9,7 @@ module.exports = {
     	},
     	createdAt: DataTypes.DATE,
     	updatedAt: DataTypes.DATE,
-    	content: DataTypes.STRING,
+    	content: DataTypes.TEXT,
       authorId: {
         type: DataTypes.INTEGER,
         foreignKey: true

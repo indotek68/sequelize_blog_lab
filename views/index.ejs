@@ -6,13 +6,13 @@
 
   </head>
   <body>
+    <h2>BLOG INDEX</h2>
   	<ul>
   		<% posts.forEach(function(post) {%>
       <li>
-      	<%= post.dataValues.content %> <%= post.dataValues.createdAt %>
+      	<a href="/post/<%=post.dataValues.id%>"><%= post.dataValues.title %></a>
       </li>
     <% }) %>
-
   	</ul>
   </body>
 </html>

@@ -1,9 +1,17 @@
 // author.js
 
 function Author(sequelize, DataTypes){
-  return sequelize.define('author', {
+  var Author = sequelize.define('author', {
     name: DataTypes.STRING
-  });
+  },
+  	{
+  		classMethods: {
+  			associate: function(db) {
+  				Author.hasMany(db.post);
+  			}
+  		}
+  	})
+  return Author;
 };
 
 

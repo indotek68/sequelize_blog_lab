@@ -1,0 +1,20 @@
+<!DOCTYPE html />
+<html>
+<head>
+	<title>BLOG</title>
+</head>
+<body>
+	<h2><%=post.dataValues.title %></h2>
+	<p>By: <%=author.dataValues.name %></p>
+	<p>Created At: <%=post.dataValues.createdAt %></p>
+	<p id="content"><%=post.dataValues.content %></p>
+
+	<form method='post' action="/post/<%=post.dataValues.id%>?_method=delete">
+		<input type="submit" value="Delete">
+	</form>
+
+	<form method='post' action="/post/<%=post.dataValues.id%>?_method=put">
+		<input type="submit" value="Edit">
+	</form>
+</body>
+</html>

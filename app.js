@@ -17,9 +17,16 @@ app.get("/post", function(req, res){
   })
 })
 
+// find All Authors
+app.get("/post/new", function(req, res){
+  db.author.findAll().success(function(authors){
+    res.render('new', {authors: authors});
+  })
+})
+
 //Renders individual posts page w/
 //Title, Author & Content
-app.get("/post/:id", function(req, res){
+app.get("/post/:id/", function(req, res){
   var postId = Number(req.params.id);
   //console.log("postId " + postId)
 
@@ -30,12 +37,15 @@ app.get("/post/:id", function(req, res){
   })
 });
 
-//find All Authors
-app.get("/post/new", function(req, res){
-  db.author.findAll().success(function(authors){
-    res.render('new', {authors: authors});
+app.get("/post/:id/edit", function(req, res){
+  var postId = Number(req.params.id);
+  //console.log("postId " + postId)
+  res.render('edit');
+
+  db.post.find(postId).success(function(post){
   })
-})
+});
+
 
 app.post("/post", function(req, res){
   var createdPost = req.body.post;
@@ -58,16 +68,18 @@ app.delete("/post/:id", function(req, res){
   });
 });
 
-app.put("/post/:id/edit"), function(res, req){
+app.put("/post/:id"), function(res, req){
   var postId = Number(req.params.id);
   var foundPost = req.body.post;
   var updatedPost = updateAttributes({title: foundPost.title, content: foundPost.content});
 
-  db.post.find(postId).success(function(post){
-    post.updatedPost.
-  })
-    
-}
+  // db.post.find(postId).success(function(post){
+  //   post.updatedPost.success(function(){
+  //     res.redirect("/post");
+  //   })
+  // })
+res.redirect("/post");
+};
 
 
 app.listen(3000, function(){

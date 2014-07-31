@@ -2,7 +2,16 @@
 
 function Author(sequelize, DataTypes){
   var Author = sequelize.define('author', {
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    username: {
+      type: DataTypes.STRING,
+      unique: true, 
+      allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   },
   	{
   		classMethods: {

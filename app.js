@@ -9,6 +9,18 @@ app.use(bodyParser.urlencoded());
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + '/public'));
 
+
+app.get("/", function(req, res){
+  res.render('home')
+})
+
+app.get("/signup", function(req, res){
+  res.render('signup', {message: null})
+})
+
+app.get("/login", function(req, res){
+  res.render('login', {message: null})
+})
 //Render all Post titles
 app.get("/post", function(req, res){
   db.post.findAll().success(function(posts){
@@ -46,6 +58,7 @@ app.get("/post/:id/edit", function(req, res){
   })
 });
 
+app.post("/signup")
 
 app.post("/post", function(req, res){
   var createdPost = req.body.post;

@@ -6,7 +6,13 @@
 </head>
 <body>
 	<h1>Sign Up</h1>
-	<form method="post" action="/signup">
+	<p style = "color:red;">
+	<% if(message) {%>
+		<%= message %>
+		<% }%>
+	</p>
+
+	<form method="post" action='/signup'>
 		<div>
 			<label for="name">Name</label>
 			<input id="name" type='text' name='name'>
@@ -22,6 +28,7 @@
 		<div>
 			<input type='submit' value='Sign Up'>
 		</div>
+		<a href="/login">Already have an account? Log in here</a>
 	</form>
 </body>
 </html>

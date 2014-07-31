@@ -7,6 +7,7 @@ function Author(sequelize, DataTypes){
     name: DataTypes.STRING,
     username: {
       type: DataTypes.STRING,
+      allowNull: false,
       unique: true, 
       validate: {
         len: [6, 30],
@@ -29,14 +30,15 @@ function Author(sequelize, DataTypes){
           return hash;
         },
         comparePass: function(userpass, dbpass){
-          return bcrypt.comapareSync(userpass, dbpass);
+          return bcrypt.compareSync(userpass, dbpass);
         },
-        createNewUser: function(username, password, err, success){
+        createNewUser: function(name, username, password, err, success){
           if(password.length < 6){
             err({message: "Password should be more than 6 characters"});
           }
           else{
             Author.create({
+              name: name,
               username: username,
               password: Author.encryptPass(password)
             }).error(function(error){
@@ -63,10 +65,10 @@ function Author(sequelize, DataTypes){
               console.log(error);
               err({message: "Oops something went worng"});
             }
-            else if (user === null){
+            else if (author === null){
               err({message: "Username does not exist"});
             }
-            else if(User.comparePass(password, user.password) === true){
+            else if(Author.comparePass(password, author.password) === true){
               success();
             }
             else {
@@ -77,5 +79,5 @@ function Author(sequelize, DataTypes){
       }  
   });
   return Author;
-};
+}
 module.exports = Author;
